@@ -1,0 +1,12 @@
+{
+  "lambda": {
+    "role": "party-bot-executor",
+    "name": "twilio-dialogflow-bridge",
+    "region": "us-east-1",
+    "sharedRole": true
+  },
+  "api": {
+    "id": "7o9plb6008",
+    "module": "lambda"
+  }
+}
