@@ -12,6 +12,11 @@
     },
     "keywords": [],
     "author": "John Keefe",
+    "files": [
+        "lambda.js",
+        "lib",
+        "secrets"
+    ],
     "license": "MIT",
     "devDependencies": {
         "claudia": "^5.12.0"

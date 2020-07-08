@@ -38,4 +38,5 @@ venv
 .venv
 
 # Sekrets file
-sekrets
+secrets
+
