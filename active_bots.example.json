@@ -1,4 +1,10 @@
 {
-    "+15551112222": "credentials_filename_without_json_extension",
-    "+15552221111": "another_credentials_filename_without_json_extension",
+    "+15551112222": {
+        "project_id": "project_ID_for_your_bot",
+        "credentials_file": "credentials_filename.json"
+    },
+    "+15552221111": {
+        "project_id": "project_ID_for_another_bot",
+        "credentials_file": "another_credentials_filename.json"
+    }
 }
