@@ -50,6 +50,7 @@ api.post('/bridge', async function(req){
     const sessionId = twilio_id;
     const languageCode = 'en-US';
     
+    
     // pass twilio source along in the payload
     data.source = "twilio"
     
@@ -58,7 +59,22 @@ api.post('/bridge', async function(req){
     if (num_media > 0) {
         text += " TWILIO MEDIA OBJECT"
     }
-
+    
+    // Add a "launch-keyword-detected" context if it's a launch keyword
+    const contexts = []
+    var launch_keywords = ['hi', 'hello', 'hola']
+    var clean_text = text.toLowerCase().trim()
+    if (launch_keywords.includes(clean_text)) {
+        var launch_context = [
+            {
+                "name": `projects/${projectId}/agent/sessions/${sessionId}/contexts/launch-keyword-detected`,
+                "lifespanCount": 1
+            }
+        ]
+        contexts.push(launch_context)
+    }
+    
+    
     // The text query request.
     const request = {
         session: sessionPath,
@@ -74,6 +90,11 @@ api.post('/bridge', async function(req){
             payload: jsonToProto.jsonToStructProto(data)
         }
     };
+    
+    // add the launch context to the request, if it exists
+    if (contexts && contexts.length > 0) {
+        request.queryParams.contexts = jsonToProto.jsonToStructProto(contexts)
+    }
 
     // Send sent text to Dialogflow and log result
     const responses = await sessionClient.detectIntent(request);
